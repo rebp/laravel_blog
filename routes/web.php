@@ -13,18 +13,29 @@ Route::get('/home', function(){
     return view('home-blog');
 })->middleware('auth');
 
-Route::get('/admin', function(){
-    return "Administrator";
-})->middleware('admin');
 
-Route::get('/author', function(){
-    return "Author";
-})->middleware('author');
 
-Route::get('/subscriber', function(){
-    return "Subscriber";
-})->middleware('subscriber');
+Route::middleware(['admin'])->group(function () {
 
-// Route::get('/register2', function () {
-//     return view('register');
-// });
+    Route::get('/admin', function () {
+        return 'Admin Dashboard';
+    });
+
+    Route::resource('/admin/posts', 'AdminPostsController');
+});
+
+Route::middleware(['author'])->group(function () {
+
+    Route::get('/author', function(){
+        return "Author Dashboard";
+    });
+
+});
+
+Route::middleware(['subscriber'])->group(function () {
+    
+    Route::get('/subscriber', function(){
+        return "Subscriber Dashboard";
+    });
+
+});
