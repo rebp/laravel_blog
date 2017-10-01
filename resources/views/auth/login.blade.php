@@ -1,69 +1,62 @@
-@extends('layouts.app')
+@extends('layouts.public')
+
+@section('title', 'Login')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Login</div>
+    <!-- Content
+    ============================================= -->
+    <section id="content">
 
-                <div class="panel-body">
-                    <form class="form-horizontal" method="POST" action="{{ route('login') }}">
-                        {{ csrf_field() }}
+        <div class="content-wrap">
 
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
+            <div class="container clearfix">
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                <div class="tabs divcenter nobottommargin clearfix" id="tab-login-register" style="max-width: 500px;">
 
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                    <div class="tab-container">
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
+                        <div class="tab-content clearfix" id="tab-login">
+                            <div class="panel panel-default nobottommargin">
+                                <div class="panel-body" style="padding: 40px;">
+                                    <form id="login-form" name="login-form" class="nobottommargin" action="{{ route('login') }}" method="post">
+                                        
+                                        {{ csrf_field() }}
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
+                                        <h3>Login to your Account</h3>
 
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                                        <div class="col_full">
+                                            <label for="email">Email:</label>
+                                            <input type="text" id="email" name="email" value="" class="form-control" required/>
+                                        </div>
 
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                                    </label>
+                                        <div class="col_full">
+                                            <label for="password">Password:</label>
+                                            <input type="password" id="password" name="password" value="" class="form-control" requiered/>
+                                        </div>
+
+                                        <div class="col_full">
+                                            <label>
+                                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                            </label>
+                                        </div>
+
+                                        <div class="col_full nobottommargin">
+                                            <button class="button button-3d button-black nomargin" >Login</button>
+                                            <a href="{{ route('password.request') }}" class="fright">Forgot Password?</a>
+                                        </div>
+
+                                    </form>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="form-group">
-                            <div class="col-md-8 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Login
-                                </button>
+                    </div>
 
-                                <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    Forgot Your Password?
-                                </a>
-                            </div>
-                        </div>
-                    </form>
                 </div>
+
             </div>
+
         </div>
-    </div>
-</div>
+
+    </section><!-- #content end -->
 @endsection

@@ -4,6 +4,8 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use App\Role;
+
 class Post extends Model
 {
 
@@ -28,4 +30,5 @@ class Post extends Model
     {
         return $this->hasMany(Comment::class);
     }
+
 }
