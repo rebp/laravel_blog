@@ -1,19 +1,34 @@
 <?php
 
+use App\Post;
 
 Auth::routes();
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', function () {
-    return view('home-blog');
+
+    $posts = Post::all();
+
+    return view('home-blog', compact('posts'));
+
 })->name('home');
 
+Route::get('/home/post/{id}', function ($id) {
+    
+    $post = Post::findOrFail($id);
+
+    return view('home-post', compact('post'));
+
+})->name('home.post');
+
 Route::get('/home', function(){
-    return view('home-blog');
+
+    $posts = Post::all();
+
+    return view('home-blog', compact('posts'));
+
 })->middleware('auth');
-
-
 
 Route::middleware(['admin'])->group(function () {
 

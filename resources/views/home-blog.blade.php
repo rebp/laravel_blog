@@ -19,65 +19,28 @@
 					============================================= -->
 					<div id="posts">
 
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/blog/full/17.jpg" data-lightbox="image"><img class="image_fade" src="images/blog/standard/17.jpg" alt="Standard Post with Image"></a>
+						@foreach($posts as $post)
+						
+							<div class="entry clearfix">
+								<div class="entry-image">
+									<img src="{{ $post->photo ? $post->photo->file : url('images/blog/standard/17.jpg') }}" alt="">
+								</div>
+								<div class="entry-title">
+									<h2>{{ $post->title }}</h2>
+								</div>
+								<ul class="entry-meta clearfix">
+									<li><i class="icon-calendar3"></i> {{ $post->created_at->toFormattedDateString()  }}</li>
+									<li><i class="icon-user"></i> {{ $post->user->role->name }}</li>
+									<li><i class="icon-folder-open"></i> <a href="#">{{ $post->category->name }}</a></li>
+									<li><i class="icon-comments"></i> {{ count($post->comments) }}</li>
+								</ul>
+								<div class="entry-content">
+									<p>{{ $post->content }}</p>
+									<a href="{{ route('home.post', $post->id) }}"class="more-link">Read More</a>
+								</div>
 							</div>
-							<div class="entry-title">
-								<h2><a href="{{ url('/post') }}">This is a Standard post with a Preview Image</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-calendar3"></i> 10th February 2014</li>
-								<li><a href="#"><i class="icon-user"></i> admin</a></li>
-								<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
-								<li><a href="{{ url('/post') }}#comments"><i class="icon-comments"></i> 13 Comments</a></li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-							<div class="entry-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod est tenetur in. Eligendi, deserunt, blanditiis est quisquam doloribus voluptate id aperiam ea ipsum magni aut perspiciatis rem voluptatibus officia eos rerum deleniti quae nihil facilis repellat atque vitae voluptatem libero at eveniet veritatis ab facere.</p>
-								<a href="{{ url('/post') }}"class="more-link">Read More</a>
-							</div>
-						</div>
 
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/blog/full/17.jpg" data-lightbox="image"><img class="image_fade" src="images/blog/standard/17.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="{{ url('/post') }}">This is a Standard post with a Preview Image</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-calendar3"></i> 10th February 2014</li>
-								<li><a href="#"><i class="icon-user"></i> admin</a></li>
-								<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
-								<li><a href="{{ url('/post') }}#comments"><i class="icon-comments"></i> 13 Comments</a></li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-							<div class="entry-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod est tenetur in. Eligendi, deserunt, blanditiis est quisquam doloribus voluptate id aperiam ea ipsum magni aut perspiciatis rem voluptatibus officia eos rerum deleniti quae nihil facilis repellat atque vitae voluptatem libero at eveniet veritatis ab facere.</p>
-								<a href="{{ url('/post') }}"class="more-link">Read More</a>
-							</div>
-						</div>	
-
-						<div class="entry clearfix">
-							<div class="entry-image">
-								<a href="images/blog/full/17.jpg" data-lightbox="image"><img class="image_fade" src="images/blog/standard/17.jpg" alt="Standard Post with Image"></a>
-							</div>
-							<div class="entry-title">
-								<h2><a href="{{ url('/post') }}">This is a Standard post with a Preview Image</a></h2>
-							</div>
-							<ul class="entry-meta clearfix">
-								<li><i class="icon-calendar3"></i> 10th February 2014</li>
-								<li><a href="#"><i class="icon-user"></i> admin</a></li>
-								<li><i class="icon-folder-open"></i> <a href="#">General</a>, <a href="#">Media</a></li>
-								<li><a href="{{ url('/post') }}#comments"><i class="icon-comments"></i> 13 Comments</a></li>
-								<li><a href="#"><i class="icon-camera-retro"></i></a></li>
-							</ul>
-							<div class="entry-content">
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate, asperiores quod est tenetur in. Eligendi, deserunt, blanditiis est quisquam doloribus voluptate id aperiam ea ipsum magni aut perspiciatis rem voluptatibus officia eos rerum deleniti quae nihil facilis repellat atque vitae voluptatem libero at eveniet veritatis ab facere.</p>
-								<a href="{{ url('/post') }}"class="more-link">Read More</a>
-							</div>
-						</div>	
+						@endforeach
 
 
 					</div><!-- #posts end -->

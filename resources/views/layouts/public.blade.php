@@ -7,8 +7,8 @@
 	<!-- Stylesheets
 	============================================= -->
 	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
-    <link href="css/bundle.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
+    <link href="{{ url('css/bundle.css') }}" rel="stylesheet">
+    <link href="{{ url('css/style.css') }}" rel="stylesheet">
 
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 
@@ -40,8 +40,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="#" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Canvas Logo"></a>
-						<a href="#" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="{{ url('/') }}" class="standard-logo" data-dark-logo="{{ url('/images/logo-dark.png') }}"><img src="{{ url('/images/logo.png') }}" alt="Canvas Logo"></a>
+						<a href="{{ url('/') }}" class="retina-logo" data-dark-logo="{{ url('/images/logo-dark@2x.png') }}"><img src="{{ url('/images/logo@2x.png') }}" alt="Canvas Logo"></a>
 					</div><!-- #logo end -->
 
                     @if (Auth::guest())
@@ -117,7 +117,7 @@
 
 	<!-- Footer Scripts
 	============================================= -->
-	<script type="text/javascript" src="js/script.js"></script>
+	<script type="text/javascript" src="{{ url('js/script.js') }}"></script>
 
 
 </body>
