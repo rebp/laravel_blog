@@ -59,8 +59,8 @@
 							</li>							
 							<li><a href="#"><div><i class="icon-pencil2"></i> Posts</div></a>
 								<ul>
-									<li><a href="#"><div>All Posts</div></a></li>
-									<li><a href="#"><div>Create Post</div></a></li>								
+									<li><a href="{{ route('admin.posts.index') }}"><div>All Posts</div></a></li>
+									<li><a href="{{ route('admin.posts.create') }}"><div>Create Post</div></a></li>								
 								</ul>
 							</li>
 							<li><a href="#"><div><i class="icon-reply"></i> Comments</div></a>
