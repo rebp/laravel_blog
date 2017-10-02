@@ -23,6 +23,12 @@ class Subscriber
             }
         }
 
-        return redirect('/');
+        if ( Auth::user()->isAuthor() ) {
+            return redirect('/author');
+        } else if ( Auth::user()->isAdmin() ) {
+            return redirect('/administrator');
+        } else {
+            return redirect('/');
+        }  
     }
 }

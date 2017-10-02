@@ -23,6 +23,13 @@ class Author
             }
         }
 
-        return redirect('/');
+        if ( Auth::user()->isAdmin() ) {
+            return redirect('/admin');
+        } else if ( Auth::user()->isSubscriber() ) {
+            return redirect('/subscriber');
+        } else {
+            return redirect('/');
+        }    
+
     }
 }

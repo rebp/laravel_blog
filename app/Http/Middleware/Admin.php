@@ -23,6 +23,12 @@ class Admin
             }
         }
 
-        return redirect('/');
+        if ( Auth::user()->isAuthor() ) {
+            return redirect('/author');
+        } else if ( Auth::user()->isSubscriber() ) {
+            return redirect('/subscriber');
+        } else {
+            return redirect('/');
+        }  
     }
 }

@@ -18,7 +18,7 @@ Route::get('/home', function(){
 Route::middleware(['admin'])->group(function () {
 
     Route::get('/admin', function () {
-        return 'Admin Dashboard';
+        return view('admin.index');
     });
 
     Route::resource('/admin/posts', 'AdminPostsController');
@@ -27,7 +27,7 @@ Route::middleware(['admin'])->group(function () {
 Route::middleware(['author'])->group(function () {
 
     Route::get('/author', function(){
-        return "Author Dashboard";
+        return view('author.index');
     });
 
 });
@@ -35,7 +35,7 @@ Route::middleware(['author'])->group(function () {
 Route::middleware(['subscriber'])->group(function () {
     
     Route::get('/subscriber', function(){
-        return "Subscriber Dashboard";
+        return view('subscriber.index');
     });
 
 });
