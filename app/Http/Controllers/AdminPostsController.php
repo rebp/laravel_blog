@@ -6,13 +6,6 @@ use Illuminate\Http\Request;
 
 class AdminPostsController extends Controller
 {
-
-    // public function __construct()
-    // {
-    //     $this->middleware('admin');
-    // }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +13,7 @@ class AdminPostsController extends Controller
      */
     public function index()
     {
-        return 'Admin Posts';
+        //
     }
 
     /**

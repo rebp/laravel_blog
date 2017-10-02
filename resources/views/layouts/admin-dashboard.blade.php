@@ -14,7 +14,7 @@
 
 	<!-- Document Title
 	============================================= -->
-	<title>Dashboard | Username</title>
+	<title>Dashboard | {{ auth()->user()->name }}</title>
 
 </head>
 
@@ -53,8 +53,8 @@
 							<li><a href="#"><div><i class="icon-user"></i> Profile</div></a></li>
 							<li><a href="#"><div><i class="icon-users"></i> Users</div></a>
 								<ul>
-									<li><a href="#"><div>All Useres</div></a></li>
-									<li><a href="#"><div>Create User</div></a></li>									
+									<li><a href="{{ route('admin.users.index') }}"><div>All Useres</div></a></li>
+									<li><a href="{{ route('admin.users.create') }}"><div>Create User</div></a></li>									
 								</ul>
 							</li>							
 							<li><a href="#"><div><i class="icon-pencil2"></i> Posts</div></a>
