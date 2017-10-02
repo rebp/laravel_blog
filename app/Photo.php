@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
 
-    protected $uploads = '/images/uploads/users/';
+    protected $uploads = '/images/uploads/';
 
     protected $guarded = [];
 

@@ -13,7 +13,7 @@
                 <h1>Edit User</h1>
 
 				<div class="col_one_third">
-					<img  src="{{ $user->photo ? $user->photo->file : url('images/team/2.jpg') }}" alt="Standard Post with Image">
+					<img  src="{{ $user->photo ? $user->photo->file : url('images/team/2.jpg') }}" alt="">
 				</div>
 
 				<div class="col_two_third col_last">
@@ -78,11 +78,12 @@
 						</div>
 
 					{!! Form::close() !!}
-                        {!! Form::open((['action' => ['AdminUsersController@destroy', $user->id], 'method' => 'delete'])) !!}
 
-                            {!! Form::submit('Delete', ['class' => 'button button-3d button-rounded button-red']) !!}
+                    {!! Form::open((['action' => ['AdminUsersController@destroy', $user->id], 'method' => 'delete'])) !!}
 
-                        {!! Form::close() !!}	
+                        {!! Form::submit('Delete', ['class' => 'button button-3d button-rounded button-red']) !!}
+
+                    {!! Form::close() !!}	
 				</div>
 
             

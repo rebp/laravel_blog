@@ -17,6 +17,20 @@
                     </div>
                 @endif
 
+                @if(Session::has('updated_post'))
+                    <div class="style-msg successmsg">
+                        <div class="sb-msg"><i class="icon-thumbs-up"></i> {{ session('updated_post') }}</div>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    </div>
+                @endif
+
+                @if(Session::has('deleted_post'))
+                    <div class="style-msg successmsg">
+                        <div class="sb-msg"><i class="icon-thumbs-up"></i> {{ session('deleted_post') }}</div>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    </div>
+                @endif
+
                 <h1>All Posts</h1>
 
                 <table class="table table-bordered table-striped">     
@@ -36,7 +50,7 @@
                                 <td>{{ $post->user->name }}</td>
                                 <td>{{ $post->category->name }}</td>
                                 <td>{{ $post->title }}</td>
-                                <td><a href="#">Edit Post</a></td>
+                                <td><a href="{{ route('admin.posts.edit', $post->id) }}">Edit Post</a></td>
                                 <td><a href="#">View Post</a></td>
                                 <td><a href="#">View Comments</a></td>
                             </tr>
