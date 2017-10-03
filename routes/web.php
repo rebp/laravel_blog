@@ -36,6 +36,7 @@ Route::middleware(['admin'])->group(function () {
         return view('admin.index');
     })->name('admin.dashboard');
 
+
     Route::resource('/admin/users', 'AdminUsersController', ['names' => [
 
         'index'     =>  'admin.users.index',
@@ -59,6 +60,42 @@ Route::middleware(['admin'])->group(function () {
         'destroy'   =>  'admin.posts.destroy'
 
     ]]);
+
+    Route::resource('/admin/comments', 'PostCommentsController', ['names' => [
+        
+        'index'     =>  'admin.comments.index',
+        'create'    =>  'admin.comments.create',
+        'store'     =>  'admin.comments.store',
+        'show'      =>  'admin.comments.show',
+        'edit'      =>  'admin.comments.edit',
+        'update'    =>  'admin.comments.update',
+        'destroy'   =>  'admin.comments.destroy'
+
+    ]]);
+
+    Route::resource('/admin/categories', 'AdminCategoriesController', ['names' => [
+        
+        'index'     =>  'admin.categories.index',
+        'create'    =>  'admin.categories.create',
+        'store'     =>  'admin.categories.store',
+        'show'      =>  'admin.categories.show',
+        'edit'      =>  'admin.categories.edit',
+        'update'    =>  'admin.categories.update',
+        'destroy'   =>  'admin.categories.destroy'
+
+    ]]);
+
+    Route::resource('admin/comment/replies', 'CommentRepliesController',['names'=>[       
+        
+        'index'     =>  'admin.relies.index',
+        'create'    =>  'admin.relies.create',
+        'store'     =>  'admin.relies.store',
+        'show'      =>  'admin.relies.show',
+        'edit'      =>  'admin.relies.edit',
+        'update'    =>  'admin.relies.update',
+        'destroy'   =>  'admin.relies.destroy'
+
+    ]]);   
 
 });
 

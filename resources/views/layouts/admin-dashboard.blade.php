@@ -37,7 +37,7 @@
 					============================================= -->
                     <div class="col_full topmargin">
 
-                        <img src="{{ url('images/icons/avatar.jpg') }}" class="alignleft img-circle img-thumbnail nobottommargin" alt="Avatar" style="max-width: 84px;">
+                        <img src="{{ auth()->user()->photo ? auth()->user()->photo->file : url('images/icons/avatar.jpg') }}" class="alignleft img-circle img-thumbnail nobottommargin" alt="Avatar" style="max-width: 84px;">
 
                         <div class="heading-block noborder">
                             <h3>{{ auth()->user()->name }}</h3>
@@ -50,8 +50,7 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li><a href="#"><div><i class="icon-user"></i> Profile</div></a></li>
-							<li><a href="#"><div><i class="icon-users"></i> Users</div></a>
+							<li><a href="#"><div><i class="icon-users"></i> Users</div>
 								<ul>
 									<li><a href="{{ route('admin.users.index') }}"><div>All Useres</div></a></li>
 									<li><a href="{{ route('admin.users.create') }}"><div>Create User</div></a></li>									
@@ -63,16 +62,8 @@
 									<li><a href="{{ route('admin.posts.create') }}"><div>Create Post</div></a></li>								
 								</ul>
 							</li>
-							<li><a href="#"><div><i class="icon-reply"></i> Comments</div></a>
-								<ul>
-									<li><a href="#"><div>All Comments</div></a></li>									
-								</ul>
-							</li>
-							<li><a href="#"><div><i class="icon-line-layers"></i> Categories</div></a>
-								<ul>
-									<li><a href="#"><div>All Categories</div></a></li>								
-								</ul>
-							</li>
+							<li><a href="{{ route('admin.comments.index') }}"><div><i class="icon-reply"></i> Comments</div></a></li>
+							<li><a href="{{ route('admin.categories.index') }}"><div><i class="icon-folder-open"></i> Categories</div></a></li>
                             <li><a href="{{ url('/home') }}"><div><i class="icon-blogger"></i> Blog</div></a></li>
                             <li><a href="{{ url('/logout') }}"><div><i class="icon-signout"></i> Logout</div></a></li>
 						</ul>

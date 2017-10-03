@@ -40,8 +40,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="{{ url('/') }}" class="standard-logo" data-dark-logo="{{ url('/images/logo-dark.png') }}"><img src="{{ url('/images/logo.png') }}" alt="Canvas Logo"></a>
-						<a href="{{ url('/') }}" class="retina-logo" data-dark-logo="{{ url('/images/logo-dark@2x.png') }}"><img src="{{ url('/images/logo@2x.png') }}" alt="Canvas Logo"></a>
+						<a href="{{ url('/') }}" class="standard-logo" data-dark-logo="{{ url('/images/logo-dark.png') }}"><img src="{{ url('/images/logo.png') }}" alt=""></a>
+						<a href="{{ url('/') }}" class="retina-logo" data-dark-logo="{{ url('/images/logo-dark@2x.png') }}"><img src="{{ url('/images/logo@2x.png') }}" alt=""></a>
 					</div><!-- #logo end -->
 
                     @if (Auth::guest())

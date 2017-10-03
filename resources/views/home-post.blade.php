@@ -3,6 +3,7 @@
 @section('title', $post->title)
 
 @section('content')
+				
 		<!-- Content
 		============================================= -->
 		<section id="content">
@@ -10,6 +11,13 @@
 			<div class="content-wrap">
 
 				<div class="container clearfix">
+
+				@if(Session::has('created_comment'))
+					<div class="style-msg successmsg">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i> {{ session('created_comment') }}</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+				@endif
 
 					<!-- Post Content
 					============================================= -->
@@ -104,112 +112,53 @@
 							============================================= -->
 							<div id="comments" class="clearfix">
 
-								<h3 id="comments-title"><span>3</span> Comments</h3>
+								<h3 id="comments-title"><span>{{ count($post->comments) }}</span> Comments</h3>
 
 								<!-- Comments List
 								============================================= -->
+
+								
+									
+								
+
 								<ol class="commentlist clearfix">
 
-									<li class="comment even thread-even depth-1" id="li-comment-1">
+									@foreach($post->comments as $comment)
 
-										<div id="comment-1" class="comment-wrap clearfix">
+										<li class="comment even thread-even depth-1" id="li-comment-1">
 
-											<div class="comment-meta">
+											<div id="comment-1" class="comment-wrap clearfix">
 
-												<div class="comment-author vcard">
+												<div class="comment-meta">
 
-													<span class="comment-avatar clearfix">
-													<img alt='' src='http://0.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=60' class='avatar avatar-60 photo avatar-default' height='60' width='60' /></span>
+													<div class="comment-author vcard">
 
-												</div>
-
-											</div>
-
-											<div class="comment-content clearfix">
-
-												<div class="comment-author">John Doe<span><a href="#" title="Permalink to this comment">April 24, 2012 at 10:46 am</a></span></div>
-
-												<p>Donec sed odio dui. Nulla vitae elit libero, a pharetra augue. Nullam id dolor id nibh ultricies vehicula ut id elit. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-
-												@if(Auth::check())
-													<a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
-												@endif
-
-											</div>
-
-											<div class="clear"></div>
-
-										</div>
-
-
-										<ul class='children'>
-
-											<li class="comment byuser comment-author-_smcl_admin odd alt depth-2" id="li-comment-3">
-
-												<div id="comment-3" class="comment-wrap clearfix">
-
-													<div class="comment-meta">
-
-														<div class="comment-author vcard">
-
-															<span class="comment-avatar clearfix">
-															<img alt='' src='http://1.gravatar.com/avatar/30110f1f3a4238c619bcceb10f4c4484?s=40&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D40&amp;r=G' class='avatar avatar-40 photo' height='40' width='40' /></span>
-
-														</div>
+														<span class="comment-avatar clearfix">
+														<img alt='' src="{{ $comment->photo }}" class='avatar avatar-60 photo avatar-default' height='60' width='60' /></span>
 
 													</div>
 
-													<div class="comment-content clearfix">
+												</div>
 
-														<div class="comment-author"><a href='#' rel='external nofollow' class='url'>SemiColon</a><span><a href="#" title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span></div>
+												<div class="comment-content clearfix">
 
-														<p>Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
+													<div class="comment-author">{{ $comment->author }}<span><a href="#" title="Permalink to this comment">{{ $comment->created_at->diffForHumans() }}</a></span></div>
 
+													<p>{{ $comment->content }}</p>
 
-													</div>
-
-													<div class="clear"></div>
+													@if(Auth::check())
+														<a class='comment-reply-link' href='#replyModal' data-lightbox="inline"><i class="icon-reply"></i></a>																	
+													@endif
 
 												</div>
 
-											</li>
-
-										</ul>
-
-									</li>
-
-									<li class="comment byuser comment-author-_smcl_admin even thread-odd thread-alt depth-1" id="li-comment-2">
-
-										<div id="comment-2" class="comment-wrap clearfix">
-
-											<div class="comment-meta">
-
-												<div class="comment-author vcard">
-
-													<span class="comment-avatar clearfix">
-													<img alt='' src='http://1.gravatar.com/avatar/30110f1f3a4238c619bcceb10f4c4484?s=60&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D60&amp;r=G' class='avatar avatar-60 photo' height='60' width='60' /></span>
-
-												</div>
+												<div class="clear"></div>
 
 											</div>
 
-											<div class="comment-content clearfix">
+										</li>
 
-												<div class="comment-author"><a href='http://themeforest.net/user/semicolonweb' rel='external nofollow' class='url'>SemiColon</a><span><a href="#" title="Permalink to this comment">April 25, 2012 at 1:03 am</a></span></div>
-
-												<p>Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
-
-												@if(Auth::check())
-													<a class='comment-reply-link' href='#'><i class="icon-reply"></i></a>
-												@endif
-
-											</div>
-
-											<div class="clear"></div>
-
-										</div>
-
-									</li>
+									@endforeach
 
 								</ol><!-- .commentlist end -->
 
@@ -223,35 +172,23 @@
 
 										<h3>Leave a <span>Comment</span></h3>
 
-										<form class="clearfix" action="#" method="post" id="commentform">
+										{!! Form::open((['action' => 'PostCommentsController@store', 'method' => 'post'])) !!}
 
-											<div class="col_one_third">
-												<label for="author">Name</label>
-												<input type="text" name="author" id="author" value="" size="22" tabindex="1" class="sm-form-control" />
-											</div>
-
-											<div class="col_one_third">
-												<label for="email">Email</label>
-												<input type="text" name="email" id="email" value="" size="22" tabindex="2" class="sm-form-control" />
-											</div>
-
-											<div class="col_one_third col_last">
-												<label for="url">Website</label>
-												<input type="text" name="url" id="url" value="" size="22" tabindex="3" class="sm-form-control" />
-											</div>
-
-											<div class="clear"></div>
-
-											<div class="col_full">
-												<label for="comment">Comment</label>
-												<textarea name="comment" cols="58" rows="7" tabindex="4" class="sm-form-control"></textarea>
+											<div class="col_full">									
+												{!! Form::textarea('content', null, ['class' => 'sm-form-control']) !!}
+												@if ($errors->has('content'))
+													<span class="text-danger">
+														<strong>{{ $errors->first('content') }}</strong>
+													</span>
+												@endif
 											</div>
 
 											<div class="col_full nobottommargin">
-												<button name="submit" type="submit" id="submit-button" tabindex="5" value="Submit" class="button button-3d nomargin">Submit Comment</button>
+												{!! Form::submit('Submit', ['class' => 'button button-3d nomargin']) !!}							
+												{!! Form::hidden('post_id', $post->id) !!}
 											</div>
 
-										</form>
+										{!! Form::close() !!}
 
 									</div><!-- #respond end -->
 
@@ -301,4 +238,34 @@
 			</div>
 
 		</section><!-- #content end -->
+
+		<div data-target="#replyModal"></div>
+
+		<!-- Modal -->
+		<div class="modal1 mfp-hide" id="replyModal">
+			<div class="block divcenter" style="background-color: #FFF; max-width: 500px;">
+				<div class="center" style="padding: 50px;">
+					<h3>Reply this <span>Comment</span></h3>
+
+					{!! Form::open((['action' => 'PostCommentsController@store', 'method' => 'post'])) !!}
+
+						<div class="col_full">									
+							{!! Form::textarea('content', null, ['class' => 'sm-form-control']) !!}
+							@if ($errors->has('content'))
+								<span class="text-danger">
+									<strong>{{ $errors->first('content') }}</strong>
+								</span>
+							@endif
+						</div>
+
+						<div class="col_full nobottommargin">
+							{!! Form::submit('Submit', ['class' => 'button button-3d nomargin']) !!}							
+							{!! Form::hidden('post_id', $post->id) !!}
+						</div>
+
+					{!! Form::close() !!}
+				</div>
+			</div>
+		</div>
+
 @endsection

@@ -48,10 +48,10 @@
                         @foreach($posts as $post)
                             <tr>
                                 <td>{{ $post->user->name }}</td>
-                                <td>{{ $post->category->name }}</td>
+                                <td>{{ $post->category ? $post->category->name : 'uncategorized' }}</td>
                                 <td>{{ $post->title }}</td>
                                 <td><a href="{{ route('admin.posts.edit', $post->id) }}">Edit Post</a></td>
-                                <td><a href="#">View Post</a></td>
+                                <td><a href="{{ route('home.post', $post->id) }}">View Post</a></td>
                                 <td><a href="#">View Comments</a></td>
                             </tr>
                         @endforeach
