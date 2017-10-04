@@ -37,7 +37,7 @@
                             <td>{{ $comment->content }}</td>
                             <td>{{ $comment->post->user->name }}</td>
                             <td><a href="{{ route('home.post', $comment->post->id) }}">View Post</a></td>
-                            <td><a href="#">View Replies</a></td>
+                            <td><a href="{{ route('admin.replies.show', $comment->id) }}">View Replies</a></td>
                         </tr>
                         @endforeach
                     </tbody>

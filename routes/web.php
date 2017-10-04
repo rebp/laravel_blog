@@ -93,13 +93,13 @@ Route::middleware(['admin'])->group(function () {
 
     Route::resource('admin/comment/replies', 'CommentRepliesController',['names'=>[       
         
-        'index'     =>  'admin.relies.index',
-        'create'    =>  'admin.relies.create',
-        'store'     =>  'admin.relies.store',
-        'show'      =>  'admin.relies.show',
-        'edit'      =>  'admin.relies.edit',
-        'update'    =>  'admin.relies.update',
-        'destroy'   =>  'admin.relies.destroy'
+        'index'     =>  'admin.replies.index',
+        'create'    =>  'admin.replies.create',
+        'store'     =>  'admin.replies.store',
+        'show'      =>  'admin.replies.show',
+        'edit'      =>  'admin.replies.edit',
+        'update'    =>  'admin.replies.update',
+        'destroy'   =>  'admin.replies.destroy'
 
     ]]);   
 
