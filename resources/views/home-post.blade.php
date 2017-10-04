@@ -265,7 +265,7 @@
 							<h4 class="highlight-me">Categories</h4>
 							<ul>
 								@foreach($categories as $category)
-									<li><a href="#"><div>{{ $category->name }}</div></a></li>
+									<li><a href="{{ url('/?category=' . $category->id) }}"><div>{{ $category->name }}</div></a></li>
 								@endforeach	
 							</ul>
 

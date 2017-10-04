@@ -9,7 +9,12 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', function () {
 
-    $posts = Post::all();
+    if($category = request()->category) {
+         $posts = Post::where('category_id', $category)->get();
+    } else {
+        $posts = Post::all();
+    }
+
     $categories = Category::all();
 
     return view('home-blog', compact('posts', 'categories'));
@@ -18,7 +23,12 @@ Route::get('/', function () {
 
 Route::get('/home', function(){
 
-    $posts = Post::all();
+    if($category = request()->category) {
+        $posts = Post::where('category_id', $category)->get();
+   } else {
+       $posts = Post::all();
+   }
+
     $categories = Category::all();
 
     return view('home-blog', compact('posts', 'categories'));
