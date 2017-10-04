@@ -1,6 +1,7 @@
 <?php
 
 use App\Post;
+use App\Category;
 
 Auth::routes();
 
@@ -9,26 +10,31 @@ Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/', function () {
 
     $posts = Post::all();
+    $categories = Category::all();
 
-    return view('home-blog', compact('posts'));
+    return view('home-blog', compact('posts', 'categories'));
 
 })->name('home');
-
-Route::get('/home/post/{id}', function ($id) {
-    
-    $post = Post::findOrFail($id);
-
-    return view('home-post', compact('post'));
-
-})->name('home.post');
 
 Route::get('/home', function(){
 
     $posts = Post::all();
+    $categories = Category::all();
 
-    return view('home-blog', compact('posts'));
+    return view('home-blog', compact('posts', 'categories'));
 
 })->middleware('auth');
+
+
+Route::get('/home/post/{id}', function ($id) {
+    
+    $post = Post::findOrFail($id);
+    $comments = $post->comments()->get();
+    $categories = Category::all();
+    
+    return view('home-post', compact('post', 'comments', 'categories'));
+
+})->name('home.post');
 
 Route::middleware(['admin'])->group(function () {
 

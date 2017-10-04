@@ -19,6 +19,14 @@
 					</div>
 				@endif
 
+
+				@if(Session::has('created_reply'))
+					<div class="style-msg successmsg">
+						<div class="sb-msg"><i class="icon-thumbs-up"></i> {{ session('created_reply') }}</div>
+						<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+					</div>
+				@endif
+
 					<!-- Post Content
 					============================================= -->
 					<div class="postcontent nobottommargin clearfix">
@@ -123,11 +131,11 @@
 
 								<ol class="commentlist clearfix">
 
-									@foreach($post->comments as $comment)
+									@foreach($comments as $comment)
 
 										<li class="comment even thread-even depth-1" id="li-comment-1">
 
-											<div id="comment-1" class="comment-wrap clearfix">
+											<div id="comment-{{$comment->id}}" class="comment-wrap clearfix">
 
 												<div class="comment-meta">
 
@@ -147,7 +155,8 @@
 													<p>{{ $comment->content }}</p>
 
 													@if(Auth::check())
-														<a class='comment-reply-link' href='#replyModal' data-lightbox="inline"><i class="icon-reply"></i></a>																	
+														<a class='comment-reply-link' href='#replyModal-{{ $comment->id }}' data-lightbox="inline"><i class="icon-reply"></i></a>
+														<div data-target="#replyModal-{{ $comment->id }}"></div>																	
 													@endif
 
 												</div>
@@ -155,6 +164,50 @@
 												<div class="clear"></div>
 
 											</div>
+
+
+										@if($comment->replies)
+
+											<ul class='children'>
+
+													@foreach($comment->replies as $reply)
+
+														<li class="comment byuser comment-author-_smcl_admin odd alt depth-2" id="li-comment-3">
+
+															<div id="comment-3" class="comment-wrap clearfix">
+
+																<div class="comment-meta">
+
+																	<div class="comment-author vcard">
+
+																		<span class="comment-avatar clearfix">
+																		<img alt='' src='{{ $reply->photo }}' class='avatar avatar-40 photo' height='40' width='40' /></span>
+
+																	</div>
+
+																</div>
+
+																<div class="comment-content clearfix">
+
+																	<div class="comment-author"><a href='#' rel='external nofollow' class='url'>{{ $reply->author }}</a><span><a href="#" title="Permalink to this comment">{{ $reply->created_at->diffForHumans() }}</a></span></div>
+
+																	<p>{{ $reply->content }}</p>
+
+
+																</div>
+
+																<div class="clear"></div>
+
+															</div>
+
+														</li>
+											
+													@endforeach		
+
+											</ul>									
+
+
+										@endif
 
 										</li>
 
@@ -211,20 +264,9 @@
 
 							<h4 class="highlight-me">Categories</h4>
 							<ul>
-								<li><a href=""><div>Animations</div></a></li>
-								<li><a href=""><div>Buttons</div></a></li>
-								<li><a href=""><div>Carousel</div></a></li>
-								<li><a href=""><div>Charts</div></a></li>
-								<li><a href=""><div>Clients</div></a></li>
-								<li><a href=""><div>Columns</div></a></li>
-								<li><a href=""><div>Counters</div></a></li>
-								<li><a href=""><div>Dividers</div></a></li>
-								<li><a href=""><div>Icon Boxes</div></a></li>
-								<li><a href=""><div>Galleries</div></a></li>
-								<li><a href=""><div>Heading Styles</div></a></li>
-								<li><a href=""><div>Icon Lists</div></a></li>
-								<li><a href=""><div>Labels</div></a></li>
-								<li><a href=""><div>Lightbox</div></a></li>
+								@foreach($categories as $category)
+									<li><a href="#"><div>{{ $category->name }}</div></a></li>
+								@endforeach	
 							</ul>
 
 						</div>
@@ -238,19 +280,22 @@
 			</div>
 
 		</section><!-- #content end -->
+		
 
-		<div data-target="#replyModal"></div>
+@if(count($comments) > 0)
 
-		<!-- Modal -->
-		<div class="modal1 mfp-hide" id="replyModal">
+	<!-- Modals -->
+	@foreach($comments as $comment)
+		
+		<div class="modal1 mfp-hide" id="replyModal-{{ $comment->id }}">
 			<div class="block divcenter" style="background-color: #FFF; max-width: 500px;">
 				<div class="center" style="padding: 50px;">
 					<h3>Reply this <span>Comment</span></h3>
 
-					{!! Form::open((['action' => 'PostCommentsController@store', 'method' => 'post'])) !!}
+					{!! Form::open((['action' => 'CommentRepliesController@store', 'method' => 'post'])) !!}
 
 						<div class="col_full">									
-							{!! Form::textarea('content', null, ['class' => 'sm-form-control']) !!}
+							{!! Form::textarea('content', null, ['class' => 'sm-form-control', 'required' => true]) !!}
 							@if ($errors->has('content'))
 								<span class="text-danger">
 									<strong>{{ $errors->first('content') }}</strong>
@@ -260,12 +305,16 @@
 
 						<div class="col_full nobottommargin">
 							{!! Form::submit('Submit', ['class' => 'button button-3d nomargin']) !!}							
-							{!! Form::hidden('post_id', $post->id) !!}
+							{!! Form::hidden('comment_id', $comment->id) !!}
 						</div>
 
 					{!! Form::close() !!}
 				</div>
 			</div>
 		</div>
+		
+	@endforeach	
+
+@endif
 
 @endsection

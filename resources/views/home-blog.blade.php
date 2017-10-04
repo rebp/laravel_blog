@@ -63,20 +63,9 @@
 
 							<h4 class="highlight-me">Categories</h4>
 							<ul>
-								<li><a href=""><div>Animations</div></a></li>
-								<li><a href=""><div>Buttons</div></a></li>
-								<li><a href=""><div>Carousel</div></a></li>
-								<li><a href=""><div>Charts</div></a></li>
-								<li><a href=""><div>Clients</div></a></li>
-								<li><a href=""><div>Columns</div></a></li>
-								<li><a href=""><div>Counters</div></a></li>
-								<li><a href=""><div>Dividers</div></a></li>
-								<li><a href=""><div>Icon Boxes</div></a></li>
-								<li><a href=""><div>Galleries</div></a></li>
-								<li><a href=""><div>Heading Styles</div></a></li>
-								<li><a href=""><div>Icon Lists</div></a></li>
-								<li><a href=""><div>Labels</div></a></li>
-								<li><a href=""><div>Lightbox</div></a></li>
+								@foreach($categories as $category)
+									<li><a href="#"><div>{{ $category->name }}</div></a></li>
+								@endforeach								
 							</ul>
 
 						</div>
