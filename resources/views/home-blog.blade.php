@@ -36,7 +36,7 @@
 								</ul>
 								<div class="entry-content">
 									<p>{{ $post->content }}</p>
-									<a href="{{ route('home.post', $post->id) }}"class="more-link">Read More</a>
+									<a href="{{ route('home.post', $post->slug) }}"class="more-link">Read More</a>
 								</div>
 							</div>
 

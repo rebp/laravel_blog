@@ -186,4 +186,15 @@ class AdminPostsController extends Controller
     
         return redirect()->route('admin.posts.index');
     }
+
+    public function postComments($id)
+    {
+
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments;
+
+        return view('admin.comments.index', compact('comments'));
+
+    }
 }

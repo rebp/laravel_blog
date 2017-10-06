@@ -4,12 +4,26 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Cviebrock\EloquentSluggable\Sluggable;
+use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+
 use App\Role;
 
 class Post extends Model
 {
+    use Sluggable;
+    use SluggableScopeHelpers;
 
     protected $guarded = [];
+
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
+    }
 
     public function user() 
     {

@@ -40,9 +40,9 @@ Route::get('/post/category/{category}', function($category){
 
 })->name('post.category');
 
-Route::get('/home/post/{id}', function ($id) {
+Route::get('/home/post/{slug}', function ($slug) {
     
-    $post = Post::findOrFail($id);
+    $post = Post::findBySlugOrFail($slug);
     $comments = $post->comments()->get();
     $categories = Category::all();
     
@@ -80,6 +80,8 @@ Route::middleware(['admin', 'auth'])->group(function () {
         'destroy'   =>  'admin.posts.destroy'
 
     ]]);
+
+    Route::get('/admin/comments/post/{id}', 'AdminPostsController@postComments')->name('admin.comments.post');
 
     Route::resource('/admin/comments', 'PostCommentsController', ['names' => [
         

@@ -44,7 +44,7 @@
                                 <td>{{ $reply->author }}</td>
                                 <td>{{ $reply->content }}</td>
                                 <td>{{ $reply->comment->author }}</td>
-                                <td><a href="{{ route('home.post', $reply->comment->post->id) }}">View Post</a></td>
+                                <td><a href="{{ route('home.post', $reply->comment->post->slug) }}">View Post</a></td>
                                 <td class="center">
                                     {!! Form::open((['action' => ['CommentRepliesController@destroy', $reply->id], 'method' => 'delete'])) !!}
 
