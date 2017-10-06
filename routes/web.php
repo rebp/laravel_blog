@@ -9,11 +9,7 @@ Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/', function () {
 
-    if($category = request()->category) {
-         $posts = Post::where('category_id', $category)->get();
-    } else {
-        $posts = Post::all();
-    }
+    $posts = Post::all();
 
     $categories = Category::all();
 
@@ -23,11 +19,7 @@ Route::get('/', function () {
 
 Route::get('/home', function(){
 
-    if($category = request()->category) {
-        $posts = Post::where('category_id', $category)->get();
-   } else {
-       $posts = Post::all();
-   }
+    $posts = Post::all();
 
     $categories = Category::all();
 
@@ -35,6 +27,18 @@ Route::get('/home', function(){
 
 })->middleware('auth');
 
+Route::get('/post/category/{category}', function($category){
+
+    $category_name = Category::where('name', $category)->first();    
+
+    $posts = Post::where('category_id', $category_name->id)->get();
+
+    $categories = Category::all();
+
+    return view('home-blog', compact('posts', 'categories'));
+
+
+})->name('post.category');
 
 Route::get('/home/post/{id}', function ($id) {
     
@@ -46,7 +50,7 @@ Route::get('/home/post/{id}', function ($id) {
 
 })->name('home.post');
 
-Route::middleware(['admin'])->group(function () {
+Route::middleware(['admin', 'auth'])->group(function () {
 
     Route::get('/admin', function () {
         return view('admin.index');
@@ -115,7 +119,7 @@ Route::middleware(['admin'])->group(function () {
 
 });
 
-Route::middleware(['author'])->group(function () {
+Route::middleware(['author', 'auth'])->group(function () {
 
     Route::get('/author', function(){
         return view('author.index');
@@ -123,7 +127,7 @@ Route::middleware(['author'])->group(function () {
 
 });
 
-Route::middleware(['subscriber'])->group(function () {
+Route::middleware(['subscriber', 'auth'])->group(function () {
     
     Route::get('/subscriber', function(){
         return view('subscriber.index');

@@ -48,7 +48,7 @@
 								<ul class="entry-meta clearfix">
 									<li><i class="icon-calendar3"></i> {{ $post->created_at->toFormattedDateString()  }}</li>
 									<li><i class="icon-user"></i> {{ $post->user->role->name }}</li>
-									<li><i class="icon-folder-open"></i> <a href="#">{{ $post->category->name }}</a></li>
+									<li><i class="icon-folder-open"></i> <a href="{{ url('/post/category/' . $post->category->name) }}">{{ $post->category->name }}</a></li>
 									<li><i class="icon-comments"></i> {{ count($post->comments) }}</li>
 								</ul><!-- .entry-meta end -->
 
@@ -265,7 +265,7 @@
 							<h4 class="highlight-me">Categories</h4>
 							<ul>
 								@foreach($categories as $category)
-									<li><a href="{{ url('/?category=' . $category->id) }}"><div>{{ $category->name }}</div></a></li>
+									<li><a href="{{ url('/post/category/' . $category->name) }}"><div>{{ $category->name }}</div></a></li>
 								@endforeach	
 							</ul>
 

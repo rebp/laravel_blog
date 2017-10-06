@@ -68,7 +68,16 @@ class CommentRepliesController extends Controller
         
         $replies = $comment->replies;
 
-        return view('admin.comments.replies.show', compact('replies'));
+        if ( auth()->user()->isAdmin() ) {
+            return view('admin.comments.replies.show', compact('replies'));
+        } else if ( auth()->user()->isAuthor() ) {
+            return view('author.comments.replies.show', compact('replies'));
+        } else if ( auth()->user()->isSubscriber() ) {
+            return view('subscriber.comments.replies.show', compact('replies'));
+        } else {            
+            return redirect()->route('home.blog');
+        }
+        
     }
 
     /**
