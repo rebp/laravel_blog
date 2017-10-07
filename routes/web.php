@@ -145,6 +145,20 @@ Route::middleware(['author', 'auth'])->group(function () {
         'destroy'   =>  'author.posts.destroy'
 
     ]]);
+    
+    Route::resource('/author/comments', 'PostCommentsController', ['names' => [
+        
+        'index'     =>  'author.comments.index',
+        'create'    =>  'author.comments.create',
+        'store'     =>  'author.comments.store',
+        'show'      =>  'author.comments.show',
+        'edit'      =>  'author.comments.edit',
+        'update'    =>  'author.comments.update',
+        'destroy'   =>  'author.comments.destroy'
+
+    ]]);
+
+    Route::get('/author/comments/post/{id}', 'AuthorPostsController@postComments')->name('author.comments.post');
 
     Route::resource('/author/categories', 'AuthorCategoriesController', ['names' => [
         

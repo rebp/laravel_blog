@@ -57,16 +57,8 @@
 									<li><a href="{{ route('author.posts.create') }}"><div>Create Post</div></a></li>								
 								</ul>
 							</li>
-							<li><a href="#"><div><i class="icon-reply"></i> Comments</div></a>
-								<ul>
-									<li><a href="#"><div>My Comments</div></a></li>									
-								</ul>
-							</li>
-							<li><a href="{{ route('author.categories.index') }}"><div><i class="icon-line-layers"></i> Categories</div></a>
-								<ul>
-									<li><a href="#"><div>All Categories</div></a></li>								
-								</ul>
-							</li>
+							<li><a href="{{ route('author.comments.index') }}"><div><i class="icon-reply"></i> Comments</div></a></li>
+							<li><a href="{{ route('author.categories.index') }}"><div><i class="icon-line-layers"></i> Categories</div></a></li>
                             <li><a href="{{ url('/home') }}"><div><i class="icon-blogger"></i> Blog</div></a></li>
                             <li><a href="{{ url('/logout') }}"><div><i class="icon-signout"></i> Logout</div></a></li>
 						</ul>
