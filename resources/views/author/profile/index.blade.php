@@ -9,6 +9,13 @@
         <div class="content-wrap">
 
             <div class="container">
+
+                @if(Session::has('updated_profile'))
+                    <div class="style-msg successmsg">
+                        <div class="sb-msg"><i class="icon-thumbs-up"></i> {{ session('updated_profile') }}</div>
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    </div>
+                @endif
             
                 <h1>Profile</h1>
 
@@ -60,16 +67,11 @@
 						</div>
 
 						<div class="col_one_sixth">
-                            {!! Form::submit('Save', ['class' => 'button button-3d button-rounded button-aqua']) !!}
+                            {!! Form::submit('Save Changes', ['class' => 'button button-3d button-rounded button-aqua']) !!}
 						</div>
 
 					{!! Form::close() !!}
 
-                    {!! Form::open((['action' => ['AdminUsersController@destroy', $user->id], 'method' => 'delete'])) !!}
-
-                        {!! Form::submit('Delete', ['class' => 'button button-3d button-rounded button-red']) !!}
-
-                    {!! Form::close() !!}	
 				</div>
 
             

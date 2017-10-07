@@ -50,7 +50,7 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li><a href="#"><div><i class="icon-user"></i> Profile</div></a></li>						
+							<li><a href="{{ route('author.profile.index') }}"><div><i class="icon-user"></i> Profile</div></a></li>						
 							<li><a href="#"><div><i class="icon-pencil2"></i> Posts</div></a>
 								<ul>
 									<li><a href="#"><div>My Posts</div></a></li>
