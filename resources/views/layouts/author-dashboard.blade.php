@@ -53,8 +53,8 @@
 							<li><a href="{{ route('author.profile.index') }}"><div><i class="icon-user"></i> Profile</div></a></li>						
 							<li><a href="#"><div><i class="icon-pencil2"></i> Posts</div></a>
 								<ul>
-									<li><a href="#"><div>My Posts</div></a></li>
-									<li><a href="#"><div>Create Post</div></a></li>								
+									<li><a href="{{ route('author.posts.index') }}"><div>My Posts</div></a></li>
+									<li><a href="{{ route('author.posts.create') }}"><div>Create Post</div></a></li>								
 								</ul>
 							</li>
 							<li><a href="#"><div><i class="icon-reply"></i> Comments</div></a>
@@ -62,7 +62,7 @@
 									<li><a href="#"><div>My Comments</div></a></li>									
 								</ul>
 							</li>
-							<li><a href="#"><div><i class="icon-line-layers"></i> Categories</div></a>
+							<li><a href="{{ route('author.categories.index') }}"><div><i class="icon-line-layers"></i> Categories</div></a>
 								<ul>
 									<li><a href="#"><div>All Categories</div></a></li>								
 								</ul>

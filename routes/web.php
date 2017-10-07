@@ -130,12 +130,31 @@ Route::middleware(['author', 'auth'])->group(function () {
     Route::resource('/author/profile', 'AuthorProfileController', ['names' => [
         
         'index'     =>  'author.profile.index',
-        'create'    =>  'author.profile.create',
-        'store'     =>  'author.profile.store',
-        'show'      =>  'author.profile.show',
-        'edit'      =>  'author.profile.edit',
-        'update'    =>  'author.profile.update',
-        'destroy'   =>  'author.profile.destroy'
+        'update'    =>  'author.profile.update'
+
+    ]]);
+
+    Route::resource('/author/posts', 'AuthorPostsController', ['names' => [
+        
+        'index'     =>  'author.posts.index',
+        'create'    =>  'author.posts.create',
+        'store'     =>  'author.posts.store',
+        'show'      =>  'author.posts.show',
+        'edit'      =>  'author.posts.edit',
+        'update'    =>  'author.posts.update',
+        'destroy'   =>  'author.posts.destroy'
+
+    ]]);
+
+    Route::resource('/author/categories', 'AuthorCategoriesController', ['names' => [
+        
+        'index'     =>  'author.categories.index',
+        'create'    =>  'author.categories.create',
+        'store'     =>  'author.categories.store',
+        'show'      =>  'author.categories.show',
+        'edit'      =>  'author.categories.edit',
+        'update'    =>  'author.categories.update',
+        'destroy'   =>  'author.categories.destroy'
 
     ]]);
 
