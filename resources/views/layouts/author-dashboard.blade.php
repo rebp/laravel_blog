@@ -37,7 +37,7 @@
 					============================================= -->
                     <div class="col_full topmargin">
 
-                        <img src="{{ url('images/icons/avatar.jpg') }}" class="alignleft img-circle img-thumbnail nobottommargin" alt="Avatar" style="max-width: 84px;">
+                        <img src="{{ auth()->user()->photo ? auth()->user()->photo->file : url('images/icons/avatar.jpg') }}" class="alignleft img-circle img-thumbnail nobottommargin" alt="Avatar" style="max-width: 84px;">
 
                         <div class="heading-block noborder">
                             <h3>{{ auth()->user()->name }}</h3>

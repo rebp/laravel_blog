@@ -127,6 +127,18 @@ Route::middleware(['author', 'auth'])->group(function () {
         return view('author.index');
     });
 
+    Route::resource('/author/profile', 'AuthorProfileController', ['names' => [
+        
+        'index'     =>  'author.profile.index',
+        'create'    =>  'author.profile.create',
+        'store'     =>  'author.profile.store',
+        'show'      =>  'author.profile.show',
+        'edit'      =>  'author.profile.edit',
+        'update'    =>  'author.profile.update',
+        'destroy'   =>  'author.profile.destroy'
+
+    ]]);
+
 });
 
 Route::middleware(['subscriber', 'auth'])->group(function () {
