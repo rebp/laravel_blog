@@ -58,7 +58,7 @@
 								</ul>
 							</li>
 							<li><a href="{{ route('author.comments.index') }}"><div><i class="icon-reply"></i> Comments</div></a></li>
-							<li><a href="{{ route('author.categories.index') }}"><div><i class="icon-line-layers"></i> Categories</div></a></li>
+							<li><a href="{{ route('author.categories.index') }}"><div><i class="icon-folder-open"></i> Categories</div></a></li>
                             <li><a href="{{ url('/home') }}"><div><i class="icon-blogger"></i> Blog</div></a></li>
                             <li><a href="{{ url('/logout') }}"><div><i class="icon-signout"></i> Logout</div></a></li>
 						</ul>

@@ -27,7 +27,7 @@ Route::get('/home', function(){
 
 })->middleware('auth');
 
-Route::get('/post/category/{category}', function($category){
+Route::get('/posts/category/{category}', function($category){
 
     $category_name = Category::where('name', $category)->first();    
 
@@ -38,7 +38,7 @@ Route::get('/post/category/{category}', function($category){
     return view('home-blog', compact('posts', 'categories'));
 
 
-})->name('post.category');
+})->name('posts.category');
 
 Route::get('/home/post/{slug}', function ($slug) {
     

@@ -56,7 +56,7 @@
 									<li><a href="#"><div>My Comments</div></a></li>									
 								</ul>
 							</li>
-							<li><a href="#"><div><i class="icon-line-layers"></i> Categories</div></a>
+							<li><a href="#"><div><i class="icon-folder-open"></i> Categories</div></a>
 								<ul>
 									<li><a href="#"><div>All Categories</div></a></li>								
 								</ul>
