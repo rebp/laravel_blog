@@ -145,6 +145,8 @@ Route::middleware(['author', 'auth'])->group(function () {
         'destroy'   =>  'author.posts.destroy'
 
     ]]);
+
+    Route::get('/author/comments/post/{id}', 'AuthorPostsController@postComments')->name('author.comments.post');
     
     Route::resource('/author/comments', 'PostCommentsController', ['names' => [
         
@@ -158,7 +160,6 @@ Route::middleware(['author', 'auth'])->group(function () {
 
     ]]);
 
-    Route::get('/author/comments/post/{id}', 'AuthorPostsController@postComments')->name('author.comments.post');
 
     Route::resource('/author/categories', 'AuthorCategoriesController', ['names' => [
         

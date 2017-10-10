@@ -189,4 +189,16 @@ class AuthorPostsController extends Controller
     
         return redirect()->route('author.posts.index');
     }
+
+    public function postComments($id)
+    {
+
+        $post = Post::findOrFail($id);
+
+        $comments = $post->comments;
+
+        return view('author.comments.index', compact('comments'));
+
+    }
+
 }

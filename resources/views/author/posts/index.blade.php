@@ -44,7 +44,7 @@
                                     <td>{{ $post->category ? $post->category->name : 'uncategorized' }}</td>                                
                                     <td><a href="{{ route('author.posts.edit', $post->id) }}">Edit Post</a></td>
                                     <td><a href="{{ route('home.post', $post->slug) }}">View Post</a></td>
-                                    <td><a href="{{ route('admin.comments.post', $post->id) }}">View Comments</a></td>
+                                    <td><a href="{{ route('author.comments.post', $post->id) }}">View Comments</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
