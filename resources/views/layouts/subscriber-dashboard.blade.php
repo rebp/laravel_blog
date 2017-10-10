@@ -50,17 +50,8 @@
 					<nav id="primary-menu">
 
 						<ul>
-							<li><a href="#"><div><i class="icon-user"></i> Profile</div></a></li>
-							<li><a href="#"><div><i class="icon-reply"></i> Comments</div></a>
-								<ul>
-									<li><a href="#"><div>My Comments</div></a></li>									
-								</ul>
-							</li>
-							<li><a href="#"><div><i class="icon-folder-open"></i> Categories</div></a>
-								<ul>
-									<li><a href="#"><div>All Categories</div></a></li>								
-								</ul>
-							</li>
+							<li><a href="{{ route('subscriber.profile.index') }}"><div><i class="icon-user"></i> Profile</div></a></li>
+							<li><a href="#"><div><i class="icon-reply"></i>My Comments</div></a></li>
                             <li><a href="{{ url('/home') }}"><div><i class="icon-blogger"></i> Blog</div></a></li>
                             <li><a href="{{ url('/logout') }}"><div><i class="icon-signout"></i> Logout</div></a></li>
 						</ul>

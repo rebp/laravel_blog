@@ -195,4 +195,23 @@ Route::middleware(['subscriber', 'auth'])->group(function () {
         return view('subscriber.index');
     });
 
+    Route::resource('/subscriber/profile', 'SubscriberProfileController', ['names' => [
+        
+        'index'     =>  'subscriber.profile.index',
+        'update'    =>  'subscriber.profile.update'
+
+    ]]);
+
+    Route::resource('subscriber/comment/replies', 'CommentRepliesController',['names'=>[       
+        
+        'index'     =>  'subscriber.replies.index',
+        'create'    =>  'subscriber.replies.create',
+        'store'     =>  'subscriber.replies.store',
+        'show'      =>  'subscriber.replies.show',
+        'edit'      =>  'subscriber.replies.edit',
+        'update'    =>  'subscriber.replies.update',
+        'destroy'   =>  'subscriber.replies.destroy'
+
+    ]]);
+
 });
