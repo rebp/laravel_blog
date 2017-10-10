@@ -95,6 +95,18 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     ]]);
 
+    Route::resource('admin/comment/replies', 'CommentRepliesController',['names'=>[       
+        
+        'index'     =>  'admin.replies.index',
+        'create'    =>  'admin.replies.create',
+        'store'     =>  'admin.replies.store',
+        'show'      =>  'admin.replies.show',
+        'edit'      =>  'admin.replies.edit',
+        'update'    =>  'admin.replies.update',
+        'destroy'   =>  'admin.replies.destroy'
+
+    ]]);  
+
     Route::resource('/admin/categories', 'AdminCategoriesController', ['names' => [
         
         'index'     =>  'admin.categories.index',
@@ -107,17 +119,7 @@ Route::middleware(['admin', 'auth'])->group(function () {
 
     ]]);
 
-    Route::resource('admin/comment/replies', 'CommentRepliesController',['names'=>[       
-        
-        'index'     =>  'admin.replies.index',
-        'create'    =>  'admin.replies.create',
-        'store'     =>  'admin.replies.store',
-        'show'      =>  'admin.replies.show',
-        'edit'      =>  'admin.replies.edit',
-        'update'    =>  'admin.replies.update',
-        'destroy'   =>  'admin.replies.destroy'
-
-    ]]);   
+ 
 
 });
 
@@ -159,6 +161,18 @@ Route::middleware(['author', 'auth'])->group(function () {
         'destroy'   =>  'author.comments.destroy'
 
     ]]);
+
+    Route::resource('author/comment/replies', 'CommentRepliesController',['names'=>[       
+        
+        'index'     =>  'author.replies.index',
+        'create'    =>  'author.replies.create',
+        'store'     =>  'author.replies.store',
+        'show'      =>  'author.replies.show',
+        'edit'      =>  'author.replies.edit',
+        'update'    =>  'author.replies.update',
+        'destroy'   =>  'author.replies.destroy'
+
+    ]]);  
 
 
     Route::resource('/author/categories', 'AuthorCategoriesController', ['names' => [
