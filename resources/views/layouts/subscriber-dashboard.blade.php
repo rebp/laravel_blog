@@ -51,7 +51,7 @@
 
 						<ul>
 							<li><a href="{{ route('subscriber.profile.index') }}"><div><i class="icon-user"></i> Profile</div></a></li>
-							<li><a href="#"><div><i class="icon-reply"></i>My Comments</div></a></li>
+							<li><a href="{{ route('subscriber.comments.index') }}"><div><i class="icon-reply"></i>My Comments</div></a></li>
                             <li><a href="{{ url('/home') }}"><div><i class="icon-blogger"></i> Blog</div></a></li>
                             <li><a href="{{ url('/logout') }}"><div><i class="icon-signout"></i> Logout</div></a></li>
 						</ul>

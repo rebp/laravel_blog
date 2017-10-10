@@ -28,7 +28,7 @@ class PostCommentsController extends Controller
             return view('author.comments.index', compact('comments')); 
 
         } else {
-            $comments = Comment::where('author', Auth::user()->name)->first();
+            $comments = Comment::where('author', Auth::user()->name)->get();
             return view('subscriber.comments.index', compact('comments')); 
         }       
         

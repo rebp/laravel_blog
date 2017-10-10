@@ -202,6 +202,18 @@ Route::middleware(['subscriber', 'auth'])->group(function () {
 
     ]]);
 
+    Route::resource('/subscriber/comments', 'PostCommentsController', ['names' => [
+        
+        'index'     =>  'subscriber.comments.index',
+        'create'    =>  'subscriber.comments.create',
+        'store'     =>  'subscriber.comments.store',
+        'show'      =>  'subscriber.comments.show',
+        'edit'      =>  'subscriber.comments.edit',
+        'update'    =>  'subscriber.comments.update',
+        'destroy'   =>  'subscriber.comments.destroy'
+
+    ]]);
+
     Route::resource('subscriber/comment/replies', 'CommentRepliesController',['names'=>[       
         
         'index'     =>  'subscriber.replies.index',
