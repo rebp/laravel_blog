@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -21,28 +22,6 @@ class LoginController extends Controller
 
     use AuthenticatesUsers;
 
-    protected function authenticated(Request $request, $user)
-    {
-
-        if ( $user->isAdmin() ) {
-            return redirect('/admin');
-        } else if ( $user->isAuthor() ) {
-            return redirect('/author');
-        } else if ( $user->isSubscriber() ) {
-            return redirect('/subscriber');
-        } else {
-            return redirect('/home');
-        }    
-    
-    }
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    //protected $redirectTo = '/home';
-
     /**
      * Create a new controller instance.
      *
@@ -52,4 +31,29 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    protected function authenticated(Request $request, $user)
+    {
+
+        if ( $user->isAdmin() &&  $user->isActive() ) {
+
+            return redirect('/admin');
+
+        } else if ( $user->isAuthor() && $user->isActive() ) {
+
+            return redirect('/author');
+
+        } else if ( $user->isSubscriber() && $user->isActive() ) {
+
+            return redirect('/subscriber');
+
+        } else {
+
+            auth()->logout();
+            Session::flash('account_activation', 'Your account is not activated.'); 
+            return redirect('/');
+        }  
+
+    }
+
 }

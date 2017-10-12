@@ -11,6 +11,20 @@
 
 			<div class="container clearfix">
 
+			@if(Session::has('account_activation'))
+				<div class="style-msg errormsg">
+					<div class="sb-msg"><i class="icon-remove"></i> {{ session('account_activation') }}</div>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				</div>
+			@endif
+
+			@if(Session::has('account_comfirmation'))
+				<div class="style-msg successmsg">
+					<div class="sb-msg"><i class="icon-thumbs-up"></i> {{ session('account_comfirmation') }}</div>
+					<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+				</div>
+			@endif
+
 				<!-- Post Content
 				============================================= -->
 				<div class="postcontent nobottommargin clearfix">

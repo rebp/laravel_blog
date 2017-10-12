@@ -14,7 +14,7 @@ class AddAboutMeColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->text('about_me')->after('email')->nullable;
+            $table->text('about_me')->after('email')->nullable();
         });
     }
 

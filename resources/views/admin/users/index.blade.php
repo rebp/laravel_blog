@@ -51,7 +51,13 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>{{ $user->role->name }}</td>
-                                <td>{{ $user->isActive() ? 'Active' : 'Not Active' }}</td>
+                                
+                                @if(!$user->isActive())
+                                    <td class="danger">Not Active</td>
+                                @else
+                                    <td class="success">Active</td>
+                                @endif                                
+
                                 <td><a href="{{ route('admin.users.edit', $user->id) }}">Edit</a></td>
                                 <td>{{ $user->created_at->diffForHumans() }}</td>
                                 <td>{{ $user->updated_at->diffForHumans() }}</td>
