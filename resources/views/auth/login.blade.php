@@ -24,8 +24,8 @@
                                         <h3>Login to your Account</h3>
 
                                         <div class="col_full">
-                                            {!! Form::label('name', 'Name') !!}
-                                            {!! Form::text('name', null, ['class' => 'sm-form-control']) !!}
+                                            {!! Form::label('email', 'Email') !!}
+                                            {!! Form::text('email', null, ['class' => 'sm-form-control']) !!}
                                             @if ($errors->has('email'))
                                                 <span class="text-danger">
                                                     <strong>{{ $errors->first('email') }}</strong>
