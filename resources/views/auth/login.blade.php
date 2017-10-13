@@ -18,34 +18,43 @@
                         <div class="tab-content clearfix" id="tab-login">
                             <div class="panel panel-default nobottommargin">
                                 <div class="panel-body" style="padding: 40px;">
-                                    <form id="login-form" name="login-form" class="nobottommargin" action="{{ route('login') }}" method="post">
-                                        
-                                        {{ csrf_field() }}
+
+                                    {!! Form::open(['action' => 'Auth\LoginController@login', 'method' => 'post']) !!}
 
                                         <h3>Login to your Account</h3>
 
                                         <div class="col_full">
-                                            <label for="email">Email:</label>
-                                            <input type="text" id="email" name="email" value="" class="form-control" required/>
+                                            {!! Form::label('name', 'Name') !!}
+                                            {!! Form::text('name', null, ['class' => 'sm-form-control']) !!}
+                                            @if ($errors->has('email'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('email') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
 
                                         <div class="col_full">
-                                            <label for="password">Password:</label>
-                                            <input type="password" id="password" name="password" value="" class="form-control" requiered/>
+                                            {!! Form::label('password', 'Password') !!}
+                                            {!! Form::password('password', ['class' => 'sm-form-control']) !!}   
+                                            @if ($errors->has('password'))
+                                                <span class="text-danger">
+                                                    <strong>{{ $errors->first('password') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
 
                                         <div class="col_full">
                                             <label>
-                                                <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
+                                                {!! Form::checkbox('remember', null, old('remember') ? true : false ) !!} Remember Me
                                             </label>
                                         </div>
 
                                         <div class="col_full nobottommargin">
-                                            <button class="button button-3d button-black nomargin" >Login</button>
-                                            <a href="{{ route('password.request') }}" class="fright">Forgot Password?</a>
+                                            {!! Form::submit('Login', ['class' => 'button button-3d button-black nomargin']) !!}
+                                            <a href="#" class="fright">Forgot Password?</a>   
                                         </div>
 
-                                    </form>
+                                    {!! Form::close() !!}
                                 </div>
                             </div>
                         </div>

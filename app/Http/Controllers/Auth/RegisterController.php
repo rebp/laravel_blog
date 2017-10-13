@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -25,13 +26,6 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
-     * Where to redirect users after registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/home';
-
-    /**
      * Create a new controller instance.
      *
      * @return void
@@ -50,9 +44,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+            'name' => 'required|max:255',
+            'email' => 'required|email|max:255|unique:users',
+            'password' => 'required|min:6|confirmed',
         ]);
     }
 
@@ -71,16 +65,16 @@ class RegisterController extends Controller
         ]);
     }
 
-    protected function register(Request $request)
+    public function register(Request $request)
     {
-        $input = $request->all();
-        $validator = $this->validator($input);
+        $this->validator($request->all())->validate();
 
-        if($validator->passes()) {
-            $this->create($input);
-            Session::flash('account_comfirmation', 'Your account had been created, but needs to be verified and activated first to login'); 
-            return redirect('/');
-        }
+        event(new Registered($user = $this->create($request->all())));
+
+        Session::flash('account_comfirmation', 'Your account had been created, but needs to be verified and activated first to login');
+
+        return redirect('/');
+
     }
 
 }
